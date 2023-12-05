@@ -8,7 +8,6 @@ on:
 jobs:
   my-job:
       runs-on:
-        group: goyororg/Default
         labels: auto-cog
 
       steps:
