@@ -1,0 +1,52 @@
+name: Push to Replicate
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  my-job:
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Maximize build space
+          uses: AdityaGarg8/remove-unwanted-software@v1
+          with:
+            remove-android: 'true'
+            remove-dotnet: 'true'
+            remove-haskell: 'true'
+            remove-docker-images: 'true'
+            remove-codeql: 'true'
+            temp-reserve-mb: '100'
+            swap-size-mb: '4096'
+
+        - name: Delete huge unnecessary tools folder
+          run: rm -rf /opt/hostedtoolcache
+
+        - name: Free space
+          run: |
+            echo "Free space:"
+            df -h
+
+        - name: Check out code
+          uses: actions/checkout@v3
+
+        - name: Setup Cog
+          uses: replicate/setup-cog@v1.0.3
+          with:
+            token: ${{ secrets.REPLICATE_API_TOKEN }}
+            install-cuda: true
+
+        - name: permission
+          run: (chmod -R 777 script/download-weights) && pwd && ls
+
+        - name: Download weights
+          run: cog run script/download-weights
+
+        - name: Delete huge unnecessary tools folder
+          run: (rm -rf /opt/hostedtoolcache) && (docker system df -v) && (docker rmi cda45fab4fca) && (docker rmi 219cd50149ac)  && (echo "Free space:") && df -h
+
+        - name: Push to Replicate
+          run: |
+            cog push r8.im/benlin924/test5
