@@ -7,9 +7,7 @@ on:
 
 jobs:
   my-job:
-      runs-on:
-        group: organization/Default
-        labels: auto-cog
+      runs-on: replicate-run
 
       steps:
         - name: Maximize build space
