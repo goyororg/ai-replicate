@@ -8,6 +8,7 @@ on:
 jobs:
   my-job:
       runs-on:
+        group: organization/Default
         labels: auto-cog
 
       steps:
