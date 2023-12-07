@@ -20,7 +20,7 @@ from diffusers.pipelines.stable_diffusion.safety_checker import (
 # e.g. prompthero/openjourney-v2, wavymulder/Analog-Diffusion, etc
 #MODEL_ID = "stabilityai/stable-diffusion-2-1"
 #MODEL_ID = "https://usa-goyor.oss-us-west-1.aliyuncs.com/public/v2-1_768-nonema-pruned.safetensors"
-MODEL_ID = "https://huggingface.co/stabilityai/stable-diffusion-2-1/blob/main/v2-1_768-nonema-pruned.safetensors"
+MODEL_ID = "./v2-1_768-nonema-pruned.safetensors"
 MODEL_CACHE = "diffusers-cache"
 SAFETY_MODEL_ID = "CompVis/stable-diffusion-safety-checker"
 

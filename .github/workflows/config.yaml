@@ -43,6 +43,9 @@ jobs:
           run: (chmod -R 777 script/download-weights) && pwd && ls
 
         - name: Download weights
+          run: wget https://usa-goyor.oss-us-west-1.aliyuncs.com/public/v2-1_768-nonema-pruned.safetensors
+
+        - name: Download weights
           run: cog run script/download-weights
           #下载模型权重
 
