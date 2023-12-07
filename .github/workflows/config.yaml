@@ -43,9 +43,7 @@ jobs:
 
         - name: Download weights
           run: cog run script/download-weights
-
-#        - name: Delete huge unnecessary tools folder
-#          run: (rm -rf /opt/hostedtoolcache) && (docker system df -v) && (docker rmi cda45fab4fca) && (docker rmi 219cd50149ac)  && (echo "Free space:") && df -h
+          #下载模型权重
 
         - name: Push to Replicate
           run: |

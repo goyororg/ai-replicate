@@ -18,7 +18,8 @@ from diffusers.pipelines.stable_diffusion.safety_checker import (
 
 # MODEL_ID refers to a diffusers-compatible model on HuggingFace
 # e.g. prompthero/openjourney-v2, wavymulder/Analog-Diffusion, etc
-MODEL_ID = "stabilityai/stable-diffusion-2-1"
+#MODEL_ID = "stabilityai/stable-diffusion-2-1"
+MODEL_ID = "https://usa-goyor.oss-us-west-1.aliyuncs.com/public/v2-1_768-nonema-pruned.safetensors"
 MODEL_CACHE = "diffusers-cache"
 SAFETY_MODEL_ID = "CompVis/stable-diffusion-safety-checker"
 
@@ -39,22 +40,6 @@ class Predictor(BasePredictor):
             local_files_only=True,
         ).to("cuda")
 
-        # self.pipe = StableDiffusionPipeline.from_single_file(
-        #     "./768-v-ema.ckpt",
-        #     torch_dtype=torch.float16,
-        #     use_safetensors=True,
-        #     variant="fp16",
-        #     safety_checker= None
-        # ).to("cuda")
-        #model_path = "https://huggingface.co/stabilityai/stable-diffusion-2-1/blob/main/v2-1_768-ema-pruned.safetensors"
-        #self.pipe = StableDiffusionPipeline.from_single_file(model_path, torch_dtype=torch.float16, use_safetensors=True).to("cuda")
-        # self.pipe = StableDiffusionPipeline.from_ckpt(
-        #     model_path,
-        #     local_files_only=True,
-        #     torch_dtype=torch.float16,
-        #     safety_checker=None,
-        #     requires_safety_checker=False
-        # ).to("cuda")
 
     @torch.inference_mode()
     def predict(
